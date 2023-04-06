@@ -25,7 +25,7 @@ class ImageUtils {
     return img;
   }
 
-  /// Converts a [CameraImage] in YUV420 format to [imageLib.Image] in RGB format
+  // Converts a [CameraImage] in YUV420 format to [imageLib.Image] in RGB format
   static imageLib.Image convertYUV420ToImage(CameraImage cameraImage) {
     final int width = cameraImage.width;
     final int height = cameraImage.height;
@@ -74,7 +74,7 @@ class ImageUtils {
     final appDir = await getTemporaryDirectory();
     final appPath = appDir.path;
     final fileOnDevice = File('$appPath/out$i.jpg');
-    await fileOnDevice.writeAsBytes(jpeg, flush: true);
-    print('Saved $appPath/out$i.jpg');
+    // await fileOnDevice.writeAsBytes(jpeg, flush: true);
+    // print('Saved $appPath/out$i.jpg');
   }
 }

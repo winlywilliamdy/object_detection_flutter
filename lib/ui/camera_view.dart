@@ -65,10 +65,9 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   /// Initializes the camera by setting [cameraController]
   void initializeCamera() async {
     cameras = await availableCameras();
-
     // cameras[0] for rear-camera
     cameraController =
-        CameraController(cameras[0], ResolutionPreset.low, enableAudio: false);
+        CameraController(cameras[0], ResolutionPreset.max, enableAudio: false);
 
     cameraController.initialize().then((_) async {
       // Stream of image passed to [onLatestImageAvailable] callback
@@ -86,7 +85,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
       // same as screenWidth while maintaining the aspectRatio
       Size screenSize = MediaQuery.of(context).size;
       CameraViewSingleton.screenSize = screenSize;
-      CameraViewSingleton.ratio = screenSize.width / previewSize.height;
+      CameraViewSingleton.ratio = screenSize.width / (previewSize.height);
     });
   }
 

@@ -39,15 +39,15 @@ class Recognition {
     // ratioX = screenWidth / imageInputWidth
     // ratioY = ratioX if image fits screenWidth with aspectRatio = constant
 
-    double ratioX = CameraViewSingleton.ratio;
-    double ratioY = ratioX;
+    double ratioX = CameraViewSingleton.ratio * 0.56;
+    double ratioY = CameraViewSingleton.ratio * 0.57;
 
     double transLeft = max(0.1, location.left * ratioX);
     double transTop = max(0.1, location.top * ratioY);
     double transWidth = min(
-        location.width * ratioX, CameraViewSingleton.actualPreviewSize.width);
+        location.width * ratioX, CameraViewSingleton.actualPreviewSize.height);
     double transHeight = min(
-        location.height * ratioY, CameraViewSingleton.actualPreviewSize.height);
+        location.height * ratioY, CameraViewSingleton.actualPreviewSize.width);
 
     Rect transformedRect =
         Rect.fromLTWH(transLeft, transTop, transWidth, transHeight);
