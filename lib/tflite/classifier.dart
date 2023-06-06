@@ -7,8 +7,6 @@ import 'package:object_detection/tflite/recognition.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
-import 'stats.dart';
-
 /// Classifier
 class Classifier {
   /// Instance of Interpreter
@@ -184,10 +182,6 @@ class Classifier {
 
     return {
       "recognitions": recognitions,
-      "stats": Stats(
-          totalPredictTime: predictElapsedTime,
-          inferenceTime: inferenceTimeElapsed,
-          preProcessingTime: preProcessElapsedTime)
     };
   }
 

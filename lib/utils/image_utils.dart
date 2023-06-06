@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:image/image.dart' as imageLib;
-import 'package:path_provider/path_provider.dart';
 
 /// ImageUtils
 class ImageUtils {
@@ -67,14 +64,5 @@ class ImageUtils {
         ((b << 16) & 0xff0000) |
         ((g << 8) & 0xff00) |
         (r & 0xff);
-  }
-
-  static void saveImage(imageLib.Image image, [int i = 0]) async {
-    List<int> jpeg = imageLib.JpegEncoder().encodeImage(image);
-    final appDir = await getTemporaryDirectory();
-    final appPath = appDir.path;
-    final fileOnDevice = File('$appPath/out$i.jpg');
-    // await fileOnDevice.writeAsBytes(jpeg, flush: true);
-    // print('Saved $appPath/out$i.jpg');
   }
 }

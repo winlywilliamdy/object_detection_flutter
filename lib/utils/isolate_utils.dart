@@ -11,6 +11,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 class IsolateUtils {
   static const String DEBUG_NAME = "InferenceIsolate";
 
+  // ignore: unused_field
   Isolate _isolate;
   ReceivePort _receivePort = ReceivePort();
   SendPort _sendPort;

@@ -6,21 +6,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.landscapeLeft]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Object Detection TFLite',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomeView(),
-    );
+    return MaterialApp(home: HomeView());
   }
 }
