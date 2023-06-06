@@ -34,15 +34,22 @@ class IsolateUtils {
 
     await for (final IsolateData isolateData in port) {
       if (isolateData != null) {
+        // Define image classifier
         Classifier classifier = Classifier(
             interpreter:
                 Interpreter.fromAddress(isolateData.interpreterAddress),
             labels: isolateData.labels);
+
+        // Preprocess image
         imageLib.Image image =
             ImageUtils.convertCameraImage(isolateData.cameraImage);
+
+        // Rotate image if the Platform is Android
         if (Platform.isAndroid) {
           image = imageLib.copyRotate(image, 0);
         }
+
+        // Predict image using classifier, then send prediction result
         Map<String, dynamic> results = classifier.predict(image);
         isolateData.responsePort.send(results);
       }

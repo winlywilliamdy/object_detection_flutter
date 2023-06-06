@@ -23,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
         children: <Widget>[
           // Camera View
           CameraView(resultsCallback),
+          
           // Bounding boxes
           boundingBoxes(results)
         ],
