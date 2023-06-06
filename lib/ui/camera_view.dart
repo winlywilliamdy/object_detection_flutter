@@ -110,8 +110,6 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
         predicting = true;
       });
 
-      var uiThreadTimeStart = DateTime.now().millisecondsSinceEpoch;
-
       // Data to be passed to inference isolate
       var isolateData = IsolateData(
           cameraImage, classifier.interpreter.address, classifier.labels);
@@ -122,9 +120,6 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
       /// perform inference in separate isolate
       Map<String, dynamic> inferenceResults = await inference(isolateData);
-
-      var uiThreadInferenceElapsedTime =
-          DateTime.now().millisecondsSinceEpoch - uiThreadTimeStart;
 
       // pass results to HomeView
       widget.resultsCallback(inferenceResults["recognitions"]);

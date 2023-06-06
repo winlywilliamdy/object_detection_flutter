@@ -93,14 +93,11 @@ class Classifier {
 
   /// Runs object detection on the input image
   Map<String, dynamic> predict(imageLib.Image image) {
-    var predictStartTime = DateTime.now().millisecondsSinceEpoch;
 
     if (_interpreter == null) {
       print("Interpreter not initialized");
       return null;
     }
-
-    var preProcessStart = DateTime.now().millisecondsSinceEpoch;
 
     // Create TensorImage from image
     TensorImage inputImage = TensorImage.fromImage(image);
@@ -108,8 +105,6 @@ class Classifier {
     // Pre-process TensorImage
     inputImage = getProcessedImage(inputImage);
 
-    var preProcessElapsedTime =
-        DateTime.now().millisecondsSinceEpoch - preProcessStart;
 
     // TensorBuffers for output tensors
     TensorBuffer outputLocations = TensorBufferFloat(_outputShapes[0]);
@@ -129,13 +124,8 @@ class Classifier {
       3: numLocations.buffer,
     };
 
-    var inferenceTimeStart = DateTime.now().millisecondsSinceEpoch;
-
     // run inference
     _interpreter.runForMultipleInputs(inputs, outputs);
-
-    var inferenceTimeElapsed =
-        DateTime.now().millisecondsSinceEpoch - inferenceTimeStart;
 
     // Maximum number of results to show
     int resultsCount = min(NUM_RESULTS, numLocations.getIntValue(0));
@@ -176,9 +166,6 @@ class Classifier {
         );
       }
     }
-
-    var predictElapsedTime =
-        DateTime.now().millisecondsSinceEpoch - predictStartTime;
 
     return {
       "recognitions": recognitions,
